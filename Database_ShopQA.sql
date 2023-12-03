@@ -94,8 +94,9 @@ INSERT INTO chatLieu VALUES
 SET DATEFORMAT dmy
 ---- NHÂN VIÊN -------
 INSERT INTO nhanVien VALUES
-('NV01',N'Nguyễn Thị Thảo Vy',N'Nữ',N'Tiền Giang',0353676483,'03/02/2001','thaovy','123',2),
-('NV02',N'Phan Văn Tuấn',N'Nam',N'Đắk Lắk',0523612459,'25/12/2001','vantuan','123',1),
+('ADMIN',N'admin',N'NAM',N'Hà Nội',0123456789,'01/01/2001','admin','admin',1),
+('NV01',N'user',N'NAM',N'Hà Nội',0123456789,'01/01/2001','user','user',2),
+('NV02',N'Nguyễn Thị Thảo Vy',N'Nữ',N'Tiền Giang',0353676483,'03/02/2001','thaovy','123',2),
 ('NV03',N'Huỳnh Phát',N'Nam',N'Đắk Lắk',0625132485,'24/12/2001','huynhphat','123',2)
 
 SET DATEFORMAT dmy
