@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QlShop_QA" Class="QLShop_QADataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=QlShop_QA;Integrated Security=True" SettingsObjectName="QLShop_QA.Properties.Settings" SettingsPropertyName="QlShop_QAConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.chatLieu" Member="chatLieus">
+    <Type Name="chatLieu">
+      <Column Name="maChatLieu" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenChatLieu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="chatLieu_hang" Member="hangs" ThisKey="maChatLieu" OtherKey="maChatLieu" Type="hang" />
+    </Type>
+  </Table>
+  <Table Name="dbo.quyen" Member="quyens">
+    <Type Name="quyen">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="quyen_nhanVien" Member="nhanViens" ThisKey="id" OtherKey="idQuyen" Type="nhanVien" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chiTietHDBan" Member="chiTietHDBans">
+    <Type Name="chiTietHDBan">
+      <Column Name="maHDBan" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maHang" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="soLuong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="donGia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="giamGia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="thanhTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="hang_chiTietHDBan" Member="hang" ThisKey="maHang" OtherKey="maHang" Type="hang" IsForeignKey="true" />
+      <Association Name="HDBan_chiTietHDBan" Member="HDBan" ThisKey="maHDBan" OtherKey="maHDBan" Type="HDBan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.hang" Member="hangs">
+    <Type Name="hang">
+      <Column Name="maHang" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenHang" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="maChatLieu" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="soLuong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="donGiaNhap" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="donGiaBan" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="anh" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ghiChu" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Association Name="hang_chiTietHDBan" Member="chiTietHDBans" ThisKey="maHang" OtherKey="maHang" Type="chiTietHDBan" />
+      <Association Name="chatLieu_hang" Member="chatLieu" ThisKey="maChatLieu" OtherKey="maChatLieu" Type="chatLieu" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HDBan" Member="HDBans">
+    <Type Name="HDBan">
+      <Column Name="maHDBan" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="maNhanVien" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="ngayBan" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="maKhach" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="tongTien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="HDBan_chiTietHDBan" Member="chiTietHDBans" ThisKey="maHDBan" OtherKey="maHDBan" Type="chiTietHDBan" />
+      <Association Name="khach_HDBan" Member="khach" ThisKey="maKhach" OtherKey="makhach" Type="khach" IsForeignKey="true" />
+      <Association Name="nhanVien_HDBan" Member="nhanVien" ThisKey="maNhanVien" OtherKey="maNhanVien" Type="nhanVien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.khach" Member="khaches">
+    <Type Name="khach">
+      <Column Name="makhach" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenkhach" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="dienthoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="ngaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="khach_HDBan" Member="HDBans" ThisKey="makhach" OtherKey="maKhach" Type="HDBan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nhanVien" Member="nhanViens">
+    <Type Name="nhanVien">
+      <Column Name="maNhanVien" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenNhanVien" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="gioiTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="dienThoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="ngaySinh" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="idQuyen" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="nhanVien_HDBan" Member="HDBans" ThisKey="maNhanVien" OtherKey="maNhanVien" Type="HDBan" />
+      <Association Name="quyen_nhanVien" Member="quyen" ThisKey="idQuyen" OtherKey="id" Type="quyen" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
